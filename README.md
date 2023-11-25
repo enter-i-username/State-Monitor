@@ -7,9 +7,14 @@ pip install msgpack
 ```
 Please note that only numpy arrays are serializable in a dict except for some basic types like int, str and list etc. So if you want to visualize torch tensors, first convert them to np.ndarray. Here is a simple example below.
 ## 1. Initializing
-Code for monitor server:
+Code for monitor server (where you receive data and visualize them):
 ```python
-monitor = StateMonitor(mode='host', host='localhost', port=12345, verbose=True)
+monitor = StateMonitor(mode='host', host='localhost', port=10086, verbose=True)
+monitor.start()
+```
+Code for client (where you are training the network and data of interest is sent from here):
+```python
+monitor = StateMonitor(mode='client', host='localhost', port=10086, verbose=True)
 monitor.start()
 ```
 
