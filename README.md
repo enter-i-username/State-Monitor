@@ -48,7 +48,10 @@ By simply running:
 ```python
 data_dict = host_monitor.get()
 if data_dict is not None:
-    # Plot the loss curve or show the hidden feature
+    # Plot the loss curve or show the hidden features
     # or do something else you like
     ...
 ```
+you can get the same `data_dict` as from the training loop.
+
+Similarly, ```data_dict = host_monitor.get()``` runs in non-blocking mode and returns `None` when 
