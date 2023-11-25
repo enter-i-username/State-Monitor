@@ -48,11 +48,12 @@ Note that `client_monitor.put(data_dict)` will only push the dict into a queue a
 ## 3. Receiving and analyzing data on the server side
 By simply running:
 ```python
-data_dict = host_monitor.get()
-if data_dict is not None:
-    # Plot the loss curve or show the hidden features
-    # or do something else you like
-    ...
+while True:
+    data_dict = host_monitor.get()
+    if data_dict is not None:
+        # Plot the loss curve or show the hidden features
+        # or do something else you like
+        ...
 ```
 you can get the same `data_dict` as from the training loop.
 
