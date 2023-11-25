@@ -54,4 +54,4 @@ if data_dict is not None:
 ```
 you can get the same `data_dict` as from the training loop.
 
-Similarly, ```data_dict = host_monitor.get()``` runs in non-blocking mode and returns `None` when 
+Similarly, ```data_dict = host_monitor.get()``` runs in non-blocking mode and returns `None` when no data available in the receiving queue.
