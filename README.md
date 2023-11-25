@@ -9,11 +9,13 @@ Please note that only numpy arrays are serializable in a dict except for some ba
 ## 1. Initializing
 Code for monitor server (where you receive data and visualize them):
 ```python
+from state_monitor import StateMonitor
 host_monitor = StateMonitor(mode='host', host='localhost', port=10086, verbose=True)
 host_monitor.start()
 ```
 Code for client (where you are training the network and data of interest is sent from here):
 ```python
+from state_monitor import StateMonitor
 client_monitor = StateMonitor(mode='client', host='localhost', port=10086, verbose=True)
 client_monitor.start()
 ```
