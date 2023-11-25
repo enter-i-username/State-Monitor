@@ -23,5 +23,24 @@ By starting the host monitor and client monitor sequentially, they connect to ea
 
 ```python
 for x_batch, y_batch in dataloader:
+    # Standard backward propagation algorithm in one epoch
+    x_batch, y_batch = x_batch.to(device), y_batch.to(device)
+    output, hidden_features = model(x_batch)
+    loss = criterion(output, hidden_features, y_batch)
 
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+    # Here to plug the client monitor obj, first construct the data dictionary
+    losses.append(float(loss))
+    data_dict = {
+        'epoch': e,
+        'losses': losses,
+        'output': output.cpu().detach().numpy(),
+        'hidden_features': hidden_features.cpu().detach().numpy(),
+    }
+    # The monitor will automatically encode data_dict into bytes and
+    # send them to the server, just using the following one line:
+    client_monitor.put(data_dict)
 ```
