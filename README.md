@@ -17,6 +17,6 @@ Code for client (where you are training the network and data of interest is sent
 client_monitor = StateMonitor(mode='client', host='localhost', port=10086, verbose=True)
 client_monitor.start()
 ```
-
-
+By starting the host monitor and client monitor sequentially, they connect to each other and get ready to perform data transmission.
+## 2. Plugging client monitor into training code snippet
 
