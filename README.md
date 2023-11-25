@@ -5,7 +5,7 @@ This package requires `msgpack` to pack a python dictionary into bytes (binary v
 ```
 pip install msgpack
 ```
-Please note that only numpy arrays are serializable in a dict except for some basic types like int, str and list etc. So if you want to visualize torch tensors, **first convert them to np.ndarray**. Here is a simple example below.
+Please note that only numpy arrays are serializable in a dict except for some basic types like int, str and list etc. So if you want to visualize torch tensors, __first convert them to np.ndarray__. Here is a simple example below.
 ## 1. Initializing
 Code for monitor server (where you receive data and visualize them):
 ```python
