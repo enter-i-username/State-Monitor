@@ -43,4 +43,12 @@ for x_batch, y_batch in dataloader:
     client_monitor.put(data_dict)
 ```
 Note that `client_monitor.put(data_dict)` will only push the dict into a queue and the serialization and transmission will be running in a separate thread (non-blocking here), which means it will not take much time in the training process.
-
+## 3. Receiving and analyzing data on the server side
+By simply running:
+```python
+data_dict = host_monitor.get()
+if data_dict is not None:
+    # Plot the loss curve or show the hidden feature
+    # or do something else you like
+    ...
+```
