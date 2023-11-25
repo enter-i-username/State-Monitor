@@ -20,3 +20,8 @@ client_monitor.start()
 By starting the host monitor and client monitor sequentially, they connect to each other and get ready to perform data transmission.
 ## 2. Plugging client monitor into training code snippet
 
+
+```python
+for x_batch, y_batch in dataloader:
+
+```
