@@ -19,8 +19,6 @@ client_monitor.start()
 ```
 By starting the host monitor and client monitor sequentially, they connect to each other and get ready to perform data transmission.
 ## 2. Plugging client monitor into training code snippet
-
-
 ```python
 for x_batch, y_batch in dataloader:
     # Standard backward propagation algorithm in one epoch
@@ -32,7 +30,7 @@ for x_batch, y_batch in dataloader:
     loss.backward()
     optimizer.step()
 
-    # Here to plug the client monitor obj, first construct the data dictionary
+    # To plug the client monitor obj, first construct the data dictionary
     losses.append(float(loss))
     data_dict = {
         'epoch': e,
@@ -44,3 +42,5 @@ for x_batch, y_batch in dataloader:
     # send them to the server, just using the following one line:
     client_monitor.put(data_dict)
 ```
+Note that `client_monitor.put(data_dict)` will only push the dict into a queue and the serialization and transmission will be running in a separate thread (non-blocking here), which means it will not take much time in the training process.
+
