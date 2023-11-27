@@ -1,6 +1,7 @@
 import socket
 from queue import Empty, Full
 from . import array_packer
+import warnings
 
 
 class StateMonitor:
@@ -70,8 +71,8 @@ class StateMonitor:
                     if msg_dict is not None:
                         StateMonitor.queue_full_put(msg_queue, msg_dict)
 
-                except:
-                    pass  # not yet implemented
+                except Exception as e:
+                    warnings.warn(str(e), RuntimeWarning)
 
     # In client mode
     class _ClientSpace(_SharedSpace):
@@ -106,8 +107,8 @@ class StateMonitor:
                         # send...
                         try:  # if something wrong with the socket
                             sock.send(binary_code)
-                        except:
-                            pass  # not yet implemented
+                        except Exception as e:
+                            warnings.warn(str(e), RuntimeWarning)
                     else:
                         pass  # not yet implemented
                 except Empty:
@@ -164,7 +165,7 @@ class StateMonitor:
         if not self.running:
             raise Exception('Monitor not started')
 
-        # note that in multiprocessing mode, 'put' will pass a deep copy of msg_dict;
+        # note that in multiprocess mode, 'put' will pass a deep copy of msg_dict;
         # however in threading mode, 'put' only passes its reference.
         StateMonitor.queue_full_put(self.msg_queue, msg_dict)
 
