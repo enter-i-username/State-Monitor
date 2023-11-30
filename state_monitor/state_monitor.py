@@ -128,6 +128,10 @@ class StateMonitor:
 
         self.running = False
 
+    def clear(self):
+        while not self.msg_queue.empty():
+            self.msg_queue.get_nowait()
+
     def start(self):
         # Connect in blocking mode
         sock = self.space.create_connected_socket(
